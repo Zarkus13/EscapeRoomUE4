@@ -1,7 +1,8 @@
 .vs
 Binaries
 Build
-Content/StarterContent
+Content/StarterContent/Textures
+Content/StarterContent/HDRI
 DerivedDataCache
 Intermediate
 Saved
