@@ -8,6 +8,7 @@
 #include "Engine/TriggerVolume.h"
 #include "OpenDoor.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDoorEvent);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
@@ -27,19 +28,17 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 private:
-	UPROPERTY(VisibleAnywhere)
-	float OpenAngle = -70.0f;
-
 	UPROPERTY(EditAnywhere)
-	ATriggerVolume* PressurePlate;
-
-	UPROPERTY(EditAnywhere)
-	float DoorCloseDelay = 0.4f;
+	ATriggerVolume* PressurePlate = nullptr;
 
 	UPROPERTY(EditAnywhere)
 	float TriggerMass = 50.0f;
 
-	float LastDoorOpenTime;
+	UPROPERTY(BlueprintAssignable)
+	FOnDoorEvent OnOpen;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnDoorEvent OnClose;
 
 	AActor* Owner;
 
