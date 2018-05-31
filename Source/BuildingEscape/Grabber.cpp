@@ -130,7 +130,9 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	if (!PhysicsHandler && PhysicsHandler->GrabbedComponent) {
+	if (!PhysicsHandler) return;
+
+	if (PhysicsHandler->GrabbedComponent) {
 		PhysicsHandler->SetTargetLocation(
 			GetLineTraceEnd(
 				GetPlayerPosition()
